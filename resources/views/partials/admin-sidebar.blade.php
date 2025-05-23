@@ -18,7 +18,7 @@
                 <!-- Data Mesin & Komponen -->
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="{{ route('mesin.index') }}" aria-expanded="false" title="Data Mesin & Komponen">
+                        href="{{ route('machines.index') }}" aria-expanded="false" title="Data Mesin & Komponen">
                         <i class="fas fa-cog"></i>
                         <span class="hide-menu">Data Mesin & Komponen</span>
                     </a>

@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 
-use App\Http\Controllers\MesinController;
+use App\Http\Controllers\MachineController;
+use App\Http\Controllers\ComponentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,12 +22,18 @@ Route::middleware('auth')->group(function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
+    Route::get('/admin/machines', [MachineController::class, 'index'])->name('machines.index');
+    Route::get('/admin/machines/create', [MachineController::class, 'create'])->name('machines.create');
+    // Route::get('/admin/machines/edit', [MachineController::class, 'edit'])->name('machines.edit');
+    Route::post('/admin/machines', [MachineController::class, 'store'])->name('machines.store');
+    Route::get('/admin/machines/{machine}/edit', [MachineController::class, 'edit'])->name('machines.edit');
+    Route::put('/admin/machines/{machine}', [MachineController::class, 'update'])->name('machines.update');
+    Route::delete('/admin/machines/{machine}', [MachineController::class, 'destroy'])->name('machines.destroy');
 
-    // Data Mesin & Komponen
-    Route::view('/admin/mesin', 'admin.mesin')->name('mesin.index');
-    Route::get('/admin/mesin', [MesinController::class, 'index'])->name('mesin.index');
-    Route::get('/admin/mesin/create', [MesinController::class, 'create'])->name('mesin.create');
-    Route::post('/admin/mesin', [MesinController::class, 'store'])->name('mesin.store');
+
+    Route::get('/admin/machines/{machine}/components', [ComponentController::class, 'index'])->name('components.index');
+    Route::get('/admin/machines/{machine}/components/create', [ComponentController::class, 'create'])->name('components.create');
+
 
     // Jadwal Perawatan Preventif
     Route::view('/admin/jadwal', 'admin.jadwal')->name('jadwal.index');

@@ -91,7 +91,7 @@
                                     <i class="fas fa-plus"></i>
                                 </a>
                                 @else
-                                <a href="{{ route('components.index', ['machine' => $machine->id]) }}"
+                                <a href="{{ route('components.edit', ['machine' => $machine->id]) }}"
                                     class="btn btn-sm btn-rounded btn-secondary" title="Lihat Komponen">
                                     <i class="fas fa-cogs"></i>
                                 </a>

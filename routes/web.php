@@ -33,6 +33,16 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/machines/{machine}/components', [ComponentController::class, 'index'])->name('components.index');
     Route::get('/admin/machines/{machine}/components/create', [ComponentController::class, 'create'])->name('components.create');
+    Route::post('/machines/{machine}/components', [ComponentController::class, 'store'])->name('components.store');
+    Route::delete('/machines/{machine}/components/{component}', [ComponentController::class, 'destroy'])->name('components.destroy');
+    Route::get('/admin/machines/{machine}/components/edit', [ComponentController::class, 'edit'])->name('components.edit');
+    Route::put('/admin/machines/{machine}/components', [ComponentController::class, 'update'])->name('components.update');
+
+
+
+    Route::get('/admin/machines/{machine}/components/json', function (App\Models\Machine $machine) {
+        return response()->json($machine->components);
+    });
 
 
     // Jadwal Perawatan Preventif

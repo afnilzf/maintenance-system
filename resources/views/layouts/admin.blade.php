@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('admin-assets/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}">
     <link rel="stylesheet" href="{{ asset('admin-assets/assets/extra-libs/datatables.net-bs4/css/responsive.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{ asset('admin-assets/dist/css/style.min.css') }}">
+    @stack('styles')
 </head>
 
 <body>
@@ -47,7 +48,9 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('admin-assets/assets/libs/jquery/dist/jquery.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- <script src="{{ asset('admin-assets/assets/libs/jquery/dist/jquery.min.js') }}"></script> -->
     <script src="{{ asset('admin-assets/assets/libs/popper.js/dist/umd/popper.min.js')}}"></script>
     <script src="{{ asset('admin-assets/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('admin-assets/dist/js/app-style-switcher.js') }}"></script>
@@ -66,6 +69,8 @@
     <script src="{{ asset('admin-assets/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{ asset('admin-assets/assets/extra-libs/datatables.net-bs4/js/dataTables.responsive.min.js')}}"></script>
     <script src="{{ asset('admin-assets/dist/js/pages/datatable/datatable-basic.init.js')}}"></script>
+
+    @yield('scripts')
 </body>
 
 </html>

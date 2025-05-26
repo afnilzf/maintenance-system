@@ -28,7 +28,14 @@
                 <!-- Jadwal Perawatan Preventif -->
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="{{ route('jadwal.index') }}" aria-expanded="false">
+                        href="{{ route('preventive-schedules.create') }}" aria-expanded="false">
+                        <i class="fas fa-calendar"></i>
+                        <span class="hide-menu">Pengajuan Perawatan</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        href="{{ route('preventive-schedules.index') }}" aria-expanded="false">
                         <i class="fas fa-calendar"></i>
                         <span class="hide-menu">Jadwal Perawatan</span>
                     </a>

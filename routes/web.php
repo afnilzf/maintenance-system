@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\MachineController;
 use App\Http\Controllers\ComponentController;
+use App\Http\Controllers\PreventiveScheduleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,31 +23,44 @@ Route::middleware('auth')->group(function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
-    Route::get('/admin/machines', [MachineController::class, 'index'])->name('machines.index');
-    Route::get('/admin/machines/create', [MachineController::class, 'create'])->name('machines.create');
-    // Route::get('/admin/machines/edit', [MachineController::class, 'edit'])->name('machines.edit');
-    Route::post('/admin/machines', [MachineController::class, 'store'])->name('machines.store');
-    Route::get('/admin/machines/{machine}/edit', [MachineController::class, 'edit'])->name('machines.edit');
-    Route::put('/admin/machines/{machine}', [MachineController::class, 'update'])->name('machines.update');
-    Route::delete('/admin/machines/{machine}', [MachineController::class, 'destroy'])->name('machines.destroy');
+    //Machines
+    Route::get('/machines', [MachineController::class, 'index'])->name('machines.index');
+    Route::get('/machines/create', [MachineController::class, 'create'])->name('machines.create');
+    // Route::get('/machines/edit', [MachineController::class, 'edit'])->name('machines.edit');
+    Route::post('/machines', [MachineController::class, 'store'])->name('machines.store');
+    Route::get('/machines/{machine}/edit', [MachineController::class, 'edit'])->name('machines.edit');
+    Route::put('/machines/{machine}', [MachineController::class, 'update'])->name('machines.update');
+    Route::delete('/machines/{machine}', [MachineController::class, 'destroy'])->name('machines.destroy');
 
 
-    Route::get('/admin/machines/{machine}/components', [ComponentController::class, 'index'])->name('components.index');
-    Route::get('/admin/machines/{machine}/components/create', [ComponentController::class, 'create'])->name('components.create');
+    //Component Machines
+    Route::get('/machines/{machine}/components', [ComponentController::class, 'index'])->name('components.index');
+    Route::get('/machines/{machine}/components/create', [ComponentController::class, 'create'])->name('components.create');
     Route::post('/machines/{machine}/components', [ComponentController::class, 'store'])->name('components.store');
     Route::delete('/machines/{machine}/components/{component}', [ComponentController::class, 'destroy'])->name('components.destroy');
-    Route::get('/admin/machines/{machine}/components/edit', [ComponentController::class, 'edit'])->name('components.edit');
-    Route::put('/admin/machines/{machine}/components', [ComponentController::class, 'update'])->name('components.update');
+    Route::get('/machines/{machine}/components/edit', [ComponentController::class, 'edit'])->name('components.edit');
+    Route::put('/machines/{machine}/components', [ComponentController::class, 'update'])->name('components.update');
 
-
-
-    Route::get('/admin/machines/{machine}/components/json', function (App\Models\Machine $machine) {
+    Route::get('/machines/{machine}/components/json', function (App\Models\Machine $machine) {
         return response()->json($machine->components);
     });
 
 
     // Jadwal Perawatan Preventif
+    // Preventive Schedule (Jadwal Perawatan Preventif)
+    Route::get('/preventive-schedules', [PreventiveScheduleController::class, 'index'])->name('preventive-schedules.index');
+    Route::get('/preventive-schedules/create', [PreventiveScheduleController::class, 'create'])->name('preventive-schedules.create');
+    Route::post('/preventive-schedules', [PreventiveScheduleController::class, 'store'])->name('preventive-schedules.store');
+    Route::get('/preventive-schedules/{preventive_schedule}', [PreventiveScheduleController::class, 'show'])->name('preventive-schedules.show');
+    Route::get('/preventive-schedules/{preventive_schedule}/edit', [PreventiveScheduleController::class, 'edit'])->name('preventive-schedules.edit');
+    Route::put('/preventive-schedules/{preventive_schedule}', [PreventiveScheduleController::class, 'update'])->name('preventive-schedules.update');
+    Route::delete('/preventive-schedules/{preventive_schedule}', [PreventiveScheduleController::class, 'destroy'])->name('preventive-schedules.destroy');
+
+    // Approval khusus
+    Route::post('/preventive-schedules/{preventive_schedule}/approve', [PreventiveScheduleController::class, 'approve'])->name('preventive-schedules.approve');
+    Route::post('/preventive-schedules/{preventive_schedule}/reject', [PreventiveScheduleController::class, 'reject'])->name('preventive-schedules.reject');
     Route::view('/admin/jadwal', 'admin.jadwal')->name('jadwal.index');
+
 
     // Pemeriksaan Mesin
     Route::view('/admin/pemeriksaan', 'admin.pemeriksaan')->name('pemeriksaan.index');

@@ -141,9 +141,14 @@
                                 class="svg-icon me-2 ms-1"></i>
                             Account Setting</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)"><i data-feather="power"
-                                class="svg-icon me-2 ms-1"></i>
-                            Logout</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a class="dropdown-item" :href="route('logout')"
+                                onclick="event.preventDefault();
+                                                this.closest('form').submit();"><i data-feather="power"
+                                    class="svg-icon me-2 ms-1"></i>
+                                Logout</a>
+                        </form>
                         <div class="dropdown-divider"></div>
                         <div class="pl-4 p-3"><a href="javascript:void(0)" class="btn btn-sm btn-info">View
                                 Profile</a></div>

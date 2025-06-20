@@ -56,18 +56,17 @@ class SparepartController extends Controller
     public function submitRequest(Request $request, Sparepart $sparepart)
     {
         $validated = $request->validate([
-            'sparepart_id' => 'required|exists:spareparts,id',
             'quantity' => 'required|integer|min:1',
             'description' => 'nullable|string',
             'requested_by' => 'nullable|exists:users,id',
         ]);
 
-        $validated['requested_by'] = Auth::user()->role === 'admin' ? $validated['requested_by'] : Auth::id();
-        $validated['sparepart_id'] = $sparepart->id;
+        $validated['requested_by'] = Auth::user()->role === 'admin'
+            ? ($validated['requested_by'] ?? null)
+            : Auth::id();
 
-        $sparepart = Sparepart::find($validated['sparepart_id']);
+        $validated['sparepart_id'] = $sparepart->id; // Pastikan ini tidak null
 
-        // Cek apakah sudah ada pending request
         if ($sparepart->pendingRequest) {
             return redirect()->back()->with('error', 'Pengajuan sudah ada dan sedang menunggu persetujuan.');
         }
@@ -76,6 +75,7 @@ class SparepartController extends Controller
 
         return redirect()->route('spareparts.index')->with('success', 'Pengajuan pembelian berhasil dikirim.');
     }
+
 
     public function history()
     {

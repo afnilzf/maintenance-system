@@ -52,7 +52,7 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="{{ route('preventive-schedules.index') }}" aria-expanded="false">
+                        href="{{ route('maintenance-requests.create') }}" aria-expanded="false">
                         <i class="fas fa-calendar-check"></i>
                         <span class="hide-menu">Jadwal Perawatan</span>
                     </a>
@@ -61,7 +61,7 @@
                 <!-- Jadwal Perawatan Preventif -->
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="{{ route('preventive-schedules.create') }}" aria-expanded="false">
+                        href="{{ route('maintenance-requests.index') }}" aria-expanded="false">
                         <i class="fas fa-file-alt"></i>
                         <span class="hide-menu">Pengajuan Perawatan</span>
                     </a>

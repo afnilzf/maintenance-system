@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MachineController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\PreventiveScheduleController;
+use App\Http\Controllers\MaintenanceRequestController;
 use App\Http\Controllers\SparepartController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,7 +53,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/spareparts/create', [SparepartController::class, 'create'])->name('spareparts.create');
     Route::post('/spareparts', [SparepartController::class, 'store'])->name('spareparts.store');
     Route::get('/spareparts/{sparepart}/request', [SparepartController::class, 'requestForm'])->name('spareparts.request');
-    Route::post('/admin/spareparts/request', [SparepartController::class, 'submitRequest'])->name('spareparts.submit-request');
+    // Route::post('/spareparts/request', [SparepartController::class, 'submitRequest'])->name('spareparts.submit-request');
+    Route::post('/spareparts/{sparepart}/request', [SparepartController::class, 'submitRequest'])->name('spareparts.submit-request');
+
+
+
     Route::get('/spareparts/history', [SparepartController::class, 'history'])->name('spareparts.history');
     Route::get('/spareparts/request/{request}/print', [SparepartController::class, 'printRequest'])->name('spareparts.print-request');
     Route::put('/spareparts/{request}/approve', [SparepartController::class, 'approveRequest'])->name('spareparts.approve-request');
@@ -74,6 +79,22 @@ Route::middleware('auth')->group(function () {
     // Approval khusus
     Route::post('/preventive-schedules/{preventive_schedule}/approve', [PreventiveScheduleController::class, 'approve'])->name('preventive-schedules.approve');
     Route::post('/preventive-schedules/{preventive_schedule}/reject', [PreventiveScheduleController::class, 'reject'])->name('preventive-schedules.reject');
+    Route::view('/admin/jadwal', 'admin.jadwal')->name('jadwal.index');
+
+
+    // Jadwal Maintenance Request
+    // Preventive Schedule (Jadwal Maintenance Request)
+    Route::get('/maintenance-requests', [MaintenanceRequestController::class, 'index'])->name('maintenance-requests.index');
+    Route::get('/maintenance-requests/create', [MaintenanceRequestController::class, 'create'])->name('maintenance-requests.create');
+    Route::post('/maintenance-requests', [MaintenanceRequestController::class, 'store'])->name('maintenance-requests.store');
+    Route::get('/maintenance-requests/{maintenance_requests}', [MaintenanceRequestController::class, 'show'])->name('maintenance-requests.show');
+    Route::get('/maintenance-requests/{maintenance_requests}/edit', [MaintenanceRequestController::class, 'edit'])->name('maintenance-requests.edit');
+    Route::put('/maintenance-requests/{maintenance_requests}', [MaintenanceRequestController::class, 'update'])->name('maintenance-requests.update');
+    Route::delete('/maintenance-requests/{maintenance_requests}', [MaintenanceRequestController::class, 'destroy'])->name('maintenance-requests.destroy');
+
+    // Approval khusus
+    Route::post('/maintenance-requests/{maintenance_requests}/approve', [MaintenanceRequestController::class, 'approve'])->name('maintenance-requests.approve');
+    Route::post('/maintenance-requests/{maintenance_requests}/reject', [MaintenanceRequestController::class, 'reject'])->name('maintenance-requests.reject');
     Route::view('/admin/jadwal', 'admin.jadwal')->name('jadwal.index');
 
 

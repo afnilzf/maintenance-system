@@ -57,11 +57,11 @@
         </div>
     </div>
 </div>
-
+<!-- Modal -->
 <div class="modal fade" id="modalPengajuan" tabindex="-1" aria-labelledby="modalPengajuanLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ route('spareparts.submit-request') }}" method="POST">
+            <form id="pengajuanForm" method="POST">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalPengajuanLabel">Form Pengajuan Pembelian Suku Cadang</h5>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Jumlah Pembelian</label>
-                        <input type="number" name="quantity" class="form-control" placeholder="Masukkan jumlah yang ingin diajukan">
+                        <input type="number" name="quantity" class="form-control" required>
                     </div>
                     @if(Auth::user()->role === 'plp')
                     <div class="mb-3">
@@ -106,6 +106,11 @@
 
         document.getElementById('sparepart_id').value = id;
         document.getElementById('sparepart_name').value = name;
+
+        // Ubah action form dengan parameter sparepart_id
+        const form = document.getElementById('pengajuanForm');
+        form.setAttribute('action', `/spareparts/${id}/request`);
     });
 </script>
+
 @endsection

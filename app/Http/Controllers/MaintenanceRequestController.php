@@ -91,17 +91,9 @@ class MaintenanceRequestController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->role === 'kepala_bengkel') {
-            $maintenance_requests->approved_by_head = true;
-            $maintenance_requests->approved_by_head_at = now();
-        } elseif ($user->role === 'kepala_jurusan') {
-            $maintenance_requests->approved_by_department = true;
-            $maintenance_requests->approved_by_department_at = now();
-        }
-
         if ($maintenance_requests->approved_by_head && $maintenance_requests->approved_by_department) {
-            $maintenance_requests->approval_status = 'approved';
         }
+        $maintenance_requests->approval_status = 'approved';
 
         $maintenance_requests->save();
 

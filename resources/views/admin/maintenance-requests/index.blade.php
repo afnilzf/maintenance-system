@@ -49,11 +49,10 @@
                         @endif
                     </td>
                     <td>
-                        @if($schedule->approval_status === 'pending' && in_array(Auth::user()->role, ['admin', 'kajur']))
-                        <form action="{{ route('maintenance-requests.approve', $schedule->id) }}" method="POST" style="display:inline-block;">
+                        @if($schedule->approval_status === 'pending' && in_array(Auth::user()->role, ['admin', 'kepala_jurusan']))
+                        <form action="{{ route('maintenance-requests.approve', $schedule->id) }}" method="POST" style="display:inline">
                             @csrf
-                            @method('PUT')
-                            <button type="submit" class="btn btn-success btn-sm">Setujui</button>
+                            <button class="btn btn-success btn-sm">Setujui</button>
                         </form>
                         <form action="{{ route('maintenance-requests.reject', $schedule->id) }}" method="POST" style="display:inline">
                             @csrf

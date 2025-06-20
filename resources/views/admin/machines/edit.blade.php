@@ -68,40 +68,57 @@
                             <hr>
                             <label>Spesifikasi Mesin</label>
                         </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Panjang</label>
-                                    <input type="number" name="length" class="form-control" step="0.01" value="{{ old('length', rtrim(rtrim($machine->length, '0'), '.')) }}">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Lebar</label>
-                                    <input type="number" name="width" class="form-control" step="0.01" value="{{ old('width', rtrim(rtrim($machine->width, '0'), '.')) }}">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Tinggi</label>
-                                    <input type="number" name="height" class="form-control" step="0.01" value="{{ old('height', rtrim(rtrim($machine->height, '0'), '.')) }}">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Daya</label>
-                                    <input type="text" name="power" class="form-control" value="{{ old('power', $machine->power) }}">
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label">Ukuran</label>
+                            <div class="col-sm-10">
+                                <div class="row g-2">
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="number" name="length" class="form-control" step="0.01" value="{{ old('length', rtrim(rtrim($machine->length, '0'), '.')) }}">
+                                            <span class="input-group-text">meter</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="number" name="width" class="form-control" step="0.01" value="{{ old('width', rtrim(rtrim($machine->width, '0'), '.')) }}">
+                                            <span class="input-group-text">meter</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="number" name="height" class="form-control" step="0.01" value="{{ old('height', rtrim(rtrim($machine->height, '0'), '.')) }}">
+                                            <span class="input-group-text">meter</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+
+                        <div class="row mb-3">
+                            <label for="inputDaya" class="col-sm-2 col-form-label">Daya</label>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <input type="text" name="power" class="form-control" value="{{ old('power', $machine->power) }}">
+                                    <span class="input-group-text">watt</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="mb-3">
                         <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Repair Complexity</label>
+                                    <input type="number" name="repair_complexity" class="form-control" value="{{ old('repair_complexity', $machine->repair_complexity) }}">
+                                </div>
+                            </div>
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Supplier</label>
                                     <input type="text" name="supplier" class="form-control" value="{{ old('supplier', $machine->supplier) }}">
                                 </div>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Foto</label>
                                     <input type="file" name="image" class="form-control" onchange="previewImage(event)">

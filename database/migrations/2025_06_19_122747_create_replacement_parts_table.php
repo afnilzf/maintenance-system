@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('replacement_parts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('machine_id')->constrained('machines')->onDelete('cascade');
+            $table->foreignId('machine_id')->constrained()->onDelete('cascade');
             $table->foreignId('repair_log_id')->constrained('repair_logs')->onDelete('cascade');
             $table->date('replacement_date');
-            $table->string('item_name');
+            $table->foreignId('spare_part_id')->constrained('spare_parts')->onDelete('cascade');
             $table->integer('quantity');
-            $table->string('unit');
+            $table->string('unit')->nullable();
             $table->text('notes')->nullable();
             $table->foreignId('replaced_by')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();

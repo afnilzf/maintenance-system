@@ -47,4 +47,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function sparepartRequests()
+    {
+        return $this->hasMany(SparepartHistory::class, 'requested_by');
+    }
 }

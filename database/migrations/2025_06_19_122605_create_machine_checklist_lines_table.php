@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('machine_checklist_id')->constrained('machine_checklists')->onDelete('cascade');
             $table->foreignId('component_id')->constrained('components')->onDelete('cascade');
-            $table->enum('condition', ['B', 'PB', 'R']);
+            $table->enum('condition', ['B', 'O', 'Rs', 'Rb']);
             $table->enum('treatment', ['P', 'Lo', 'Lg', 'Pb'])->nullable();
-            $table->text('repair_note')->nullable();
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

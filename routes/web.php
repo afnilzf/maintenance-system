@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MachineController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\PreventiveScheduleController;
+use App\Http\Controllers\SparepartController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -44,6 +45,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/machines/{machine}/components/json', function (App\Models\Machine $machine) {
         return response()->json($machine->components);
     });
+
+
+    // Spareparts
+    Route::get('/spareparts', [SparepartController::class, 'index'])->name('spareparts.index');
+    Route::get('/spareparts/create', [SparepartController::class, 'create'])->name('spareparts.create');
+    Route::post('/spareparts', [SparepartController::class, 'store'])->name('spareparts.store');
+    Route::get('/spareparts/{sparepart}/request', [SparepartController::class, 'requestForm'])->name('spareparts.request');
+    Route::post('/admin/spareparts/request', [SparepartController::class, 'submitRequest'])->name('spareparts.submit-request');
+    Route::get('/spareparts/history', [SparepartController::class, 'history'])->name('spareparts.history');
+    Route::get('/spareparts/request/{request}/print', [SparepartController::class, 'printRequest'])->name('spareparts.print-request');
+    Route::put('/spareparts/{request}/approve', [SparepartController::class, 'approveRequest'])->name('spareparts.approve-request');
+    Route::put('/spareparts/{request}/reject', [SparepartController::class, 'rejectRequest'])->name('sparepart-requests.reject');
+    Route::get('/spareparts/listrequests', [SparepartController::class, 'listrequests'])->name('sparepart.requests-listrequests');
+
 
 
     // Jadwal Perawatan Preventif

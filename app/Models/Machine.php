@@ -23,6 +23,7 @@ class Machine extends Model
         'height',
         'power',
         'supplier',
+        'repair_complexity',
         'image',
         'created_by'
     ];
@@ -35,5 +36,10 @@ class Machine extends Model
     public function createdBy()
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function sparepartUsages()
+    {
+        return $this->hasMany(SparepartHistory::class, 'machine_id');
     }
 }

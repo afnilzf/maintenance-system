@@ -27,9 +27,8 @@
                             <th>Kode Mesin</th>
                             <th>Nama Mesin</th>
                             <th>Tipe</th>
-                            <th>Status</th>
+                            <th>Complexity</th>
                             <th>Kondisi</th>
-                            <th>Details</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -37,40 +36,36 @@
                         @foreach($machines as $idx => $machine)
                         <tr>
                             <td>{{ $loop->iteration }}</td> {{-- Nomor urut --}}
-                            <td>{{ $machine->code }}</td>
+                            <td><a href="#" data-bs-toggle="modal"
+                                    data-bs-target="#specModal{{ $machine->id }}">{{ $machine->code }}</a></td>
                             <td>{{ $machine->name }}</td>
                             <td>{{ $machine->type }}</td>
-
-                            {{-- STATUS --}}
-                            <td>
-                                @if($machine->status === 'Aktif')
-                                <span class="badge rounded-pill text-bg-success">Aktif</span>
-                                @else
-                                <span class="badge rounded-pill text-bg-danger">{{ $machine->status }}</span>
-                                @endif
-                            </td>
+                            <td>{{ $machine->repair_complexity }}</td>
 
                             {{-- KONDISI --}}
                             <td>
-                                @if($machine->condition === 'Baik')
+                                @if($machine->condition === 'good')
                                 <span class="badge rounded-pill text-bg-info">Baik</span>
-                                @elseif($machine->condition === 'Rusak')
-                                <span class="badge rounded-pill text-bg-warning">Rusak</span>
+                                @elseif($machine->condition === 'medium')
+                                <span class="badge rounded-pill text-bg-warning">Sedang</span>
+                                @elseif($machine->condition === 'repaired')
+                                <span class="badge rounded-pill text-bg-warning">Diperbaiki</span>
+                                @elseif($machine->condition === 'demaged')
+                                <span class="badge rounded-pill text-bg-warning">Rusaj</span>
                                 @else
                                 <span class="badge rounded-pill text-bg-secondary">{{ $machine->condition }}</span>
                                 @endif
                             </td>
 
                             {{-- SPESIFIKASI --}}
-                            <td>
-                                <!-- <a href="" class="btn btn-sm btn-rounded btn-primary"><i class="fas fa-info"></i></a> -->
+                            <!-- <td>
                                 <button type="button"
                                     class="btn btn-sm btn-rounded btn-primary"
                                     data-bs-toggle="modal"
                                     data-bs-target="#specModal{{ $machine->id }}">
                                     <i class="fas fa-info-circle"></i>
                                 </button>
-                            </td>
+                            </td> -->
 
                             {{-- ACTION --}}
                             <td>

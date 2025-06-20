@@ -1,0 +1,79 @@
+🧠 LOGIKA PENILAIAN KONDISI MESIN BERDASARKAN KONDISI KOMPONEN
+Sistem akan secara otomatis mengatur status/kondisi mesin berdasarkan pemeriksaan kondisi terakhir dari setiap komponen
+pada mesin tersebut. Berikut adalah logika penentuannya:
+🔹 Kategori Kondisi Komponen:
+• B (Baik): Tidak ada masalah
+• O (Sedang): Bisa beroperasi, tapi ada komponen perlu perbaikan ke depan
+• Rs (Rusak - Sudah Diperbaiki): Komponen pernah rusak tapi telah ditangani
+• Rb (Rusak - Belum Diperbaiki): Komponen rusak & perlu penanganan
+🔹 Algoritma Penilaian Mesin:
+1. Ambil semua komponen milik mesin
+2. Cek pemeriksaan terakhir dari masing-masing komponen
+3. Hitung total dan persentase masing-masing kondisi (B, O, Rs, Rb)
+4. Tentukan kondisi dominan berdasarkan jumlah terbanyak
+5. Tentukan status mesin:
+• Jika B terbanyak → Baik
+• Jika O terbanyak → Sedang
+• Jika Rs terbanyak → Rusak (Sudah Diperbaiki)
+• Jika Rb terbanyak → Rusak (Perlu Penanganan)
+
+Persentase = (jumlah_kategori / total_komponen) × 100
+
+🔹 Contoh Kasus (7 Komponen):
+Kondisi Komponen Jumlah Persentase (%)
+B 4 57.1
+O 2 28.6
+Rb 1 14.3
+Rs 0 0
+Status Mesin: Baik (karena B terbanyak)
+
+Jika ≥ 50% komponen B, dan sisanya bukan Rb, maka status: Baik
+---
+
+🔄 ALUR SISTEM LENGKAP
+1. Manajemen Mesin & Komponen
+• • Input & edit data mesin (dengan repair_complexity, gambar, spesifikasi)
+• • Tambah/edit komponen mesin
+• • Otomatisasi status mesin berdasarkan pemeriksaan komponen
+
+
+2. Manajemen Suku Cadang
+• • Input master suku cadang dengan stok awal
+• • Proses masuk (penambahan stok) dan keluar (pemakaian)
+• • Validasi stok saat digunakan
+• • Riwayat penggunaan suku cadang
+• • Pengajuan Stok suku cadang
+• • Cetak permintaan pembelian jika stok habis (PDF)
+
+
+
+3. Jadwal Perawatan
+• • Data jadwal manual diinput atau diimport hingga tahun 2030
+• • Tidak lagi menggunakan pengajuan penjadwalan
+• • Ditampilkan melalui FullCalendar
+• • Tetap ada notifikasi pengingat (via Laravel Scheduler)
+
+
+4. Pengajuan Perawatan (Baru)
+• • PLP mengisi form: PLP, Mesin, Minggu ke-, Siklus, Jarak, Jenis Kerusakan
+• • Kajur menyetujui (1x approval)
+• • Email notifikasi untuk pengajuan & persetujuan
+
+
+5. Pemeriksaan Mesin
+• • Input oleh PLP berdasarkan pengajuan perawatan yang disetujui
+• • PLP mengisi kondisi & perlakuan setiap komponen
+• • Update otomatis kondisi mesin
+
+
+
+6. Perbaikan Mesin
+• • Input data perbaikan: bagian, penyebab, solusi, tanggal mulai/selesai
+• • Opsional: disambungkan ke hasil pemeriksaan
+
+
+7. Penggantian Suku Cadang
+• • Pemilihan dari master suku cadang
+• • Validasi jumlah < stok • • Kurangi stok, catat riwayat penggantian 8. Laporan • • Mesin & jadwal • • Riwayat
+   perawatan & pemeriksaan • • Riwayat penggunaan suku cadang 9. Manajemen User • • Role: Admin, PLP, Kepala Jurusan • •
+   Admin mengelola user • • PLP input data teknis • • Kajur menyetujui perawatan

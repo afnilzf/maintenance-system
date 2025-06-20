@@ -13,7 +13,8 @@ class MachineController extends Controller
     //
     public function index()
     {
-        $machines = Machine::with('components')->get();
+        $machines = Machine::with('components')->latest()->get();
+        // dd($machines);
         return view('admin.machines.index', compact('machines'));
     }
 
@@ -106,6 +107,7 @@ class MachineController extends Controller
             'height' => 'nullable|numeric',
             'power' => 'nullable|string',
             'supplier' => 'nullable|string',
+            'repair_complexity' => 'nullable|integer',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ];
     }

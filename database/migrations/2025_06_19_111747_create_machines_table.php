@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('machines', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('type')->nullable();
-            $table->string('year_acquired')->nullable();
-            $table->string('inventory_number')->nullable();
+            $table->string('type');
             $table->string('code')->unique();
-            $table->enum('status', ['Aktif', 'Tidak Aktif']);
-            $table->enum('condition', ['Baik', 'Rusak']);
+            $table->string('inventory_number')->nullable();
+            $table->year('year_acquired')->nullable();
+            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->enum('condition', ['good', 'medium', 'repaired', 'damaged'])->default('good');
             $table->decimal('length', 8, 2)->nullable();
             $table->decimal('width', 8, 2)->nullable();
             $table->decimal('height', 8, 2)->nullable();
@@ -27,7 +27,8 @@ return new class extends Migration
             $table->string('supplier')->nullable();
             $table->string('image')->nullable();
             $table->text('description')->nullable();
-            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->string('repair_complexity')->nullable();
+            $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

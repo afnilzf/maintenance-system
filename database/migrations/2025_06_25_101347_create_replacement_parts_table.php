@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('replacement_parts', function (Blueprint $table) {
+        Schema::create('sparepart_replacements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('machine_id')->constrained()->onDelete('cascade');
-            $table->foreignId('repair_log_id')->constrained('repair_logs')->onDelete('cascade');
+            $table->foreignId('machine_id')->constrained('machines')->onDelete('cascade');
             $table->date('replacement_date');
-            $table->foreignId('spare_part_id')->constrained('spare_parts')->onDelete('cascade');
+            $table->foreignId('spare_part_id')->constrained('spareparts')->onDelete('cascade');
             $table->integer('quantity');
             $table->string('unit')->nullable();
             $table->text('notes')->nullable();
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('replacement_parts');
+        Schema::dropIfExists('sparepart_replacements');
     }
 };

@@ -4,9 +4,11 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h4>Daftar Mesin</h4>
+    @if(Auth::user()->role !== 'kepala_jurusan')
     <a href="{{ route('machines.create') }}" class="btn btn-rounded btn-primary">
         <i data-feather="plus"></i> Add Machine
     </a>
+    @endif
 </div>
 
 @if(session('success'))
@@ -20,7 +22,7 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <table id="default_order" class="table border table-striped table-bordered text-nowrap" style="width:100%">
+                <table id="multi_col_order" class="table border table-striped table-bordered text-nowrap" style="width:100%">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -66,8 +68,9 @@
                                     <i class="fas fa-info-circle"></i>
                                 </button>
                             </td> -->
-
+                            @if(Auth::user()->role !== 'kepala_jurusan')
                             {{-- ACTION --}}
+
                             <td>
                                 <!-- Misalnya tombol edit dan delete -->
                                 <a href="{{ route('machines.edit', $machine->id) }}" class="btn btn-sm btn-rounded btn-warning" title="Edit">
@@ -93,6 +96,19 @@
                                 @endif
 
                             </td>
+                            @else
+                            <td>
+                                @if($machine->components->isEmpty())
+                                -
+                                @else
+                                <a href="{{ route('components.edit', ['machine' => $machine->id]) }}"
+                                    class="btn btn-sm btn-rounded btn-secondary" title="Lihat Komponen">
+                                    <i class="fas fa-cogs"></i>
+                                </a>
+                                @endif
+
+                            </td>
+                            @endif
                         </tr>
                         @endforeach
                     </tbody>

@@ -42,4 +42,9 @@ class MaintenanceRequest extends Model
     {
         return $this->belongsTo(User::class, 'approved_by_user');
     }
+
+    public function checklist()
+    {
+        return $this->hasOne(\App\Models\MachineChecklist::class, 'schedule_id');
+    }
 }

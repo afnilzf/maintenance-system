@@ -31,4 +31,8 @@ class Sparepart extends Model
     {
         return $this->hasOne(\App\Models\SparepartRequest::class)->where('status', 'pending');
     }
+    public function replacements()
+    {
+        return $this->hasMany(SparepartReplacement::class);
+    }
 }

@@ -7,6 +7,11 @@ use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\PreventiveScheduleController;
 use App\Http\Controllers\MaintenanceRequestController;
 use App\Http\Controllers\SparepartController;
+use App\Http\Controllers\MachineChecklistController;
+use App\Http\Controllers\RepairLogController;
+use App\Http\Controllers\SparepartReplacementController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -99,18 +104,52 @@ Route::middleware('auth')->group(function () {
 
 
     // Pemeriksaan Mesin
-    Route::view('/admin/pemeriksaan', 'admin.pemeriksaan')->name('pemeriksaan.index');
+    Route::get('/machine-checklist', [MachineChecklistController::class, 'index'])->name('checklists.index');
+    Route::get('/machine-checklist/{schedule}/create', [MachineChecklistController::class, 'create'])->name('checklists.create');
+    Route::post('/machine-checklist/{schedule}', [MachineChecklistController::class, 'store'])->name('checklists.store');
+    Route::get('/machine-checklist/{checklist}', [MachineChecklistController::class, 'show'])->name('checklists.show');
 
-    // Perbaikan & Suku Cadang
+
+
+    // Perbaikan 
     Route::view('/admin/perbaikan', 'admin.perbaikan')->name('perbaikan.index');
+    Route::get('/repairs', [RepairLogController::class, 'index'])->name('repairs.index');
+    Route::get('/repairs/create', [RepairLogController::class, 'create'])->name('repairs.create');
+    Route::post('/repairs/store', [RepairLogController::class, 'store'])->name('repairs.store');
+    Route::get('/repairs/{repair}/preview', [RepairLogController::class, 'show'])->name('repairs.show');
+
+    // Replacement parts
+    Route::get('/replacements', [SparepartReplacementController::class, 'index'])->name('replacements.index');
+    Route::get('/replacements/create', [SparepartReplacementController::class, 'create'])->name('replacements.create');
+    Route::post('/replacements', [SparepartReplacementController::class, 'store'])->name('replacements.store');
 
     // Laporan
-    Route::view('/admin/laporan/mesin', 'admin.laporan.mesin')->name('laporan.mesin');
-    Route::view('/admin/laporan/perawatan', 'admin.laporan.perawatan')->name('laporan.perawatan');
-    Route::view('/admin/laporan/perbaikan', 'admin.laporan.perbaikan')->name('laporan.perbaikan');
+    // Route::view('/admin/laporan/mesin', 'admin.laporan.mesin')->name('laporan.mesin');
+    // Route::view('/admin/laporan/perawatan', 'admin.laporan.perawatan')->name('laporan.perawatan');
+    // Route::view('/admin/laporan/perbaikan', 'admin.laporan.perbaikan')->name('laporan.perbaikan');
+
+    Route::get('/laporan/mesin', [ReportController::class, 'machineReport'])->name('laporan.mesin');
+    Route::get('/laporan/mesin/export', [ReportController::class, 'exportMachineReport'])->name('laporan.mesin.export');
+
+    Route::get('/laporan/perawatan', [ReportController::class, 'maintenanceReport'])->name('laporan.perawatan');
+    Route::get('/laporan/perawatan/export', [ReportController::class, 'exportMaintenanceReport'])->name('laporan.perawatan.export');
+
+    // Laporan Perbaikan
+    Route::get('/laporan/perbaikan', [ReportController::class, 'repairReport'])->name('laporan.perbaikan');
+    Route::get('/laporan/perbaikan/export', [ReportController::class, 'exportRepairReport'])->name('laporan.perbaikan.export');
+
+
+    Route::get('/laporan/penggantian', [ReportController::class, 'replacementReport'])->name('laporan.penggantian');
+    Route::get('/laporan/penggantian/export', [ReportController::class, 'exportReplacementReport'])->name('laporan.penggantian.export');
 
     // Manajemen User (opsional)
-    Route::view('/admin/users', 'admin.users')->name('user.index');
+    // Route::view('/admin/users', 'admin.users')->name('user.index');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::put('/users/{user}/reset-password', [UserController::class, 'resetPassword'])->name('users.reset-password');
 });
 
 require __DIR__ . '/auth.php';

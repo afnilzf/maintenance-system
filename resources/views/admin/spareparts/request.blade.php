@@ -1,5 +1,3 @@
-// resources/views/admin/spareparts/requests/index.blade.php
-
 @extends('layouts.admin')
 
 @section('title', 'Daftar Pengajuan Suku Cadang')
@@ -13,7 +11,7 @@
     @endif
 
     <div class="table-responsive">
-        <table class="table table-bordered table-striped table-sm">
+        <table id="multi_col_order" class="table table-bordered table-striped table-sm">
             <thead class="table-light">
                 <tr>
                     <th>#</th>
@@ -48,6 +46,7 @@
                     </td>
                     <td>
                         @if($request->status === 'pending')
+                        @if(Auth::user()->role !== 'plp')
                         <form action="{{ route('spareparts.approve-request', $request->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('PUT')
@@ -58,6 +57,9 @@
                             @method('PUT')
                             <button type="submit" class="btn btn-danger btn-sm">Tolak</button>
                         </form>
+                        @endif
+                        @elseif($request->status === 'rejected')
+                        -
                         @else
                         <a href="{{ route('spareparts.print-request', $request->id) }}" class="btn btn-sm btn-secondary">
                             <i class="fas fa-file-pdf"></i> Cetak

@@ -42,4 +42,14 @@ class Machine extends Model
     {
         return $this->hasMany(SparepartHistory::class, 'machine_id');
     }
+
+    // public function latestChecklist()
+    // {
+    //     return $this->hasOne(MachineChecklist::class)->latestOfMany();
+    // }
+
+    public function latestChecklist()
+    {
+        return $this->hasMany(MachineChecklist::class);
+    }
 }

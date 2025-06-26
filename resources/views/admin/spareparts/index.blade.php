@@ -4,9 +4,12 @@
 
 @section('content')
 <div class="container-fluid">
+    @if(Auth::user()->role !== 'kepala_jurusan')
+
     <a href="{{ route('spareparts.create') }}" class="btn btn-rounded btn-primary">
-        <i data-feather="plus"></i> Tambah Suku Cadang dan Oli
+        <i data-feather="plus"></i> Tambah Data
     </a>
+    @endif
     <a href="{{ route('spareparts.history') }}" class="btn btn-rounded btn-info ms-2">
         <i data-feather="clock"></i> Riwayat Suku Cadang
     </a>
@@ -18,7 +21,7 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
                 <div class="table-responsive">
-                    <table class="table border table-striped table-bordered text-nowrap">
+                    <table id="multi_col_order" class="table border table-striped table-bordered text-nowrap">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -39,13 +42,12 @@
                                 <td>{{ $sparepart->supplier }}</td>
                                 <td>
                                     @if($sparepart->stock == 0 && in_array(Auth::user()->role, ['plp', 'admin']))
-                                    @if(!$sparepart->pendingRequest)
+
                                     <button type="button" class="btn btn-sm btn-rounded btn-warning" data-bs-toggle="modal" data-bs-target="#modalPengajuan" data-id="{{ $sparepart->id }}" data-name="{{ $sparepart->name }}">
                                         <i class="fas fa-exclamation-triangle"></i>
                                     </button>
                                     @else
-                                    <span class="badge bg-secondary">Menunggu Approval</span>
-                                    @endif
+                                    -
                                     @endif
                                 </td>
                             </tr>

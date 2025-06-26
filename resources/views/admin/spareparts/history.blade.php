@@ -22,7 +22,7 @@
         {{-- Stok Masuk --}}
         <div class="tab-pane fade show active" id="stokMasuk" role="tabpanel">
             <div class="table-responsive">
-                <table class="table table-bordered table-sm">
+                <table id="multi_col_order" class="table table-bordered table-sm">
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
@@ -54,7 +54,7 @@
         {{-- Stok Keluar --}}
         <div class="tab-pane fade" id="stokKeluar" role="tabpanel">
             <div class="table-responsive">
-                <table class="table table-bordered table-sm">
+                <table id="multi_col_order2" class="table table-bordered table-sm">
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
@@ -87,3 +87,17 @@
     </div>
 </div>
 @endsection
+<script>
+    $('#multi_col_order2').DataTable({
+        columnDefs: [{
+            targets: [0],
+            orderData: [0, 1]
+        }, {
+            targets: [1],
+            orderData: [1, 0]
+        }, {
+            targets: [4],
+            orderData: [4, 0]
+        }]
+    });
+</script>

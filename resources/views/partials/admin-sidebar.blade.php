@@ -52,7 +52,7 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="{{ route('maintenance-requests.create') }}" aria-expanded="false">
+                        href="#" aria-expanded="false">
                         <i class="fas fa-calendar-check"></i>
                         <span class="hide-menu">Jadwal Perawatan</span>
                     </a>
@@ -72,7 +72,7 @@
                 <!-- Pemeriksaan Mesin -->
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="{{ route('pemeriksaan.index') }}" aria-expanded="false">
+                        href="{{ route('checklists.index') }}" aria-expanded="false">
                         <i class="fas fa-search"></i>
                         <span class="hide-menu">Pemeriksaan Mesin</span>
                     </a>
@@ -81,7 +81,7 @@
                 <!-- Perbaikan & Suku Cadang -->
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="{{ route('perbaikan.index') }}" aria-expanded="false">
+                        href="{{ route('repairs.index') }}" aria-expanded="false">
                         <i class="fas fa-wrench"></i>
                         <span class="hide-menu">Perbaikan Mesin</span>
                     </a>
@@ -89,7 +89,7 @@
 
                 <!-- Pergantian Mesin -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pergantian-mesin.html"
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('replacements.index')}}"
                         aria-expanded="false">
                         <i class="fas fa-sync-alt"></i>
                         <span class="hide-menu">Pergantian Suka Cadang</span>
@@ -111,12 +111,17 @@
                         </li>
                         <li class="sidebar-item">
                             <a href="{{ route('laporan.perawatan') }}" class="sidebar-link">
-                                <span class="hide-menu">Perawatan</span>
+                                <span class="hide-menu">Laporan Perawatan</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="{{ route('laporan.perbaikan') }}" class="sidebar-link">
-                                <span class="hide-menu">Perbaikan</span>
+                                <span class="hide-menu">Laporan Perbaikan</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ route('laporan.penggantian') }}" class="sidebar-link">
+                                <span class="hide-menu">Laporan Penggantian Suku Cadang</span>
                             </a>
                         </li>
                     </ul>
@@ -126,7 +131,7 @@
                 @if(Auth::user()->role === 'admin')
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="{{ route('user.index') }}" aria-expanded="false">
+                        href="{{ route('users.index') }}" aria-expanded="false">
                         <i class="fas fa-users"></i>
                         <span class="hide-menu">Manajemen User</span>
                     </a>

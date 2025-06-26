@@ -14,6 +14,15 @@
     <link rel="stylesheet" href="{{ asset('admin-assets/dist/css/style.min.css') }}">
     @stack('styles')
 </head>
+<!-- @push('scripts')
+<script>
+    document.getElementById('repaired_by')?.addEventListener('change', function() {
+        console.log('tes')
+        const sektor = this.options[this.selectedIndex].getAttribute('data-sektor');
+        document.getElementById('sektor').value = sektor || '';
+    });
+</script>
+@endpush -->
 
 <body>
     <!-- Preloader -->

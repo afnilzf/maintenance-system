@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('repair_logs', function (Blueprint $table) {
+        Schema::create('repair_log_lines', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('machine_checklist_id')->constrained('machine_checklists')->onDelete('cascade');
+            $table->foreignId('repair_log_id')->constrained('repair_logs')->onDelete('cascade');
             $table->string('part');
             $table->text('issue')->nullable();
             $table->text('cause')->nullable();
             $table->text('solution')->nullable();
-            $table->date('repair_date_start')->nullable();
-            $table->date('repair_date_finish')->nullable();
-            $table->foreignId('repaired_by')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('repair_logs');
+        Schema::dropIfExists('repair_logs_line');
     }
 };

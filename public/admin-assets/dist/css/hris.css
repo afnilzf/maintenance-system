@@ -1,0 +1,331 @@
+.multiselect--active {
+    z-index: 5;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.btn-disabled {
+    opacity: 0.6;
+    /* Mengurangi opacity */
+    cursor: not-allowed;
+    /* Ubah kursor menjadi tidak diizinkan */
+}
+
+.btn-danger {
+    color: rgb(255, 255, 255);
+    background-color: red;
+    border-radius: 15px;
+    border-color: red
+}
+
+.btn-danger:hover {
+    color: #212529;
+    background-color: rgb(255, 255, 255);
+    border-color: orangered;
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.5);
+}
+
+/* Ubah warna latar belakang dan teks pada opsi yang aktif */
+.select2-container--bootstrap .select2-results__option--highlighted {
+    background-color: #3478df !important;
+    /* Warna latar belakang */
+    color: #000 !important;
+    /* Warna teks */
+}
+
+/* Ubah warna border dan gaya dropdown saat terbuka */
+.select2-container--bootstrap.select2-container--open .select2-selection--single {
+    border-color: #3478df !important;
+    /* Warna border dropdown terbuka */
+    box-shadow: 0 0 5px rgba(67,
+            115,
+            212,
+            0.75) !important;
+    /* Bayangan */
+}
+
+
+
+/* Ubah warna teks yang ditampilkan */
+.select2-container--bootstrap .select2-selection__rendered {
+    color: #000 !important;
+    /* Warna teks */
+}
+
+.select2-container--bootstrap.select2-container--focus .select2-selection,
+.select2-container--bootstrap.select2-container--open .select2-selection {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(41, 107, 231, 0.6);
+    border-color: #507eda;
+}
+
+.select2-container--bootstrap .select2-dropdown {
+    /* box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(231, 111, 41, 0.6); */
+    border-color: #507eda;
+}
+
+/* input[type="date"] {
+    border: 2px solid orange;
+}
+
+input[type="date"]:focus {
+    background-color: lightorange;
+} */
+
+.error-feedback {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #ff4f70;
+}
+
+.form-control {
+    height: 34px;
+    line-height: 1.42857143;
+    padding: 6px 24px 6px 12px;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    background-color: #fff;
+    border: 1px solid rgb(176, 176, 176);
+    border-radius: 4px;
+    color: #555;
+    font-size: 14px;
+}
+
+.form-control:hover {
+    background-color: #f9f9f9;
+    /* Warna latar belakang */
+    border: 2px solid #507eda;
+}
+
+.form-control:focus {
+    outline: none;
+    /* Hilangkan outline bawaan */
+    border-color: #507eda;
+    /* Warna border saat fokus */
+    box-shadow: 0 0 5px #507eda;
+    /* Efek bayangan saat fokus */
+}
+
+.tooglePassword {
+    position: absolute;
+    right: 35px;
+    /* left: 35px; */
+    /* Jarak ke kanan */
+    top: 35%;
+    /* Untuk memastikan ikon berada di tengah vertikal */
+    transform: translateY(-50%);
+    /* Mengatur ikon agar sejajar dengan teks */
+    cursor: pointer;
+    font-size: 18px;
+    color: #ccc;
+    /* Warna default ikon */
+    z-index: 2;
+    /* Pastikan di atas elemen lain */
+}
+
+.tooglePassword:hover {
+    color: #507eda;
+    /* Ganti warna ikon saat hover */
+}
+
+.page-link {
+    color: #507eda;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.page-link:hover {
+    z-index: 2;
+    color: #507eda;
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.page-link:focus {
+    z-index: 2;
+    outline: 0;
+    box-shadow: transparent;
+}
+
+.page-item:first-child .page-link {
+    margin-left: 0;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.page-item:last-child .page-link {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #507eda;
+    border-color: #507eda;
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+
+
+thead {
+    background-color: #f2f2f2;
+    color: #000;
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+
+    /* Sesuaikan nilai untuk mengatur tingkat kebulatan */
+}
+
+th {
+    text-align: center;
+}
+
+.toggle-button {
+    width: 40px;
+    height: 20px;
+    border-radius: 10px;
+    position: relative;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    padding: 0 2px;
+    box-sizing: border-box;
+}
+
+.toggle-button.on {
+    background-color: #507eda;
+}
+
+.toggle-label {
+    font-size: 7px;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.toggle-label.off {
+    right: 7px;
+    /* Move OFF text to the right */
+}
+
+.toggle-label.on {
+    left: 7px;
+    /* Move ON text to the left */
+}
+
+.toggle-circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    top: 2.5px;
+    left: 2.5px;
+    transition: transform 0.3s;
+    z-index: 2;
+    /* Ensure circle is above labels */
+}
+
+.toggle-button.on .toggle-circle {
+    transform: translateX(20px);
+}
+
+.toggle-button.on .toggle-label.off,
+.toggle-button:not(.on) .toggle-label.on {
+    opacity: 0;
+}
+
+.toggle-button.on .toggle-label.on,
+.toggle-button:not(.on) .toggle-label.off {
+    opacity: 1;
+}
+
+.form-control-file {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #555;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+}
+
+.form-control-file:hover {
+    background-color: #f9f9f9;
+    /* Warna latar belakang */
+    border: 2px solid #507eda;
+}
+
+.form-control-file:focus {
+    outline: none;
+    /* Hilangkan outline bawaan */
+    border-color: #507eda;
+    /* Warna border saat fokus */
+    box-shadow: 0 0 5px #507eda;
+    /* Efek bayangan saat fokus */
+}
+
+/* Pastikan navbar item sejajar dengan flexbox */
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    /* Spasi antar item */
+}
+
+/* Default: Light Mode */
+body {
+    --icon-color: #333;
+    /* Warna ikon untuk mode terang */
+    background-color: #fff;
+    color: #000;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    --icon-color: #f0f0f0;
+    /* Warna ikon untuk mode gelap */
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+/* Ikon Feather */
+.nav-link i {
+    stroke: var(--icon-color);
+    /* Warna stroke berdasarkan variabel */
+    fill: var(--icon-color);
+    /* Warna isi berdasarkan variabel */
+    transition: stroke 0.3s ease, fill 0.3s ease;
+}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sparepart;
 use App\Models\SparepartRequest;
 use App\Models\SparepartHistory;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -14,8 +15,9 @@ class SparepartController extends Controller
 {
     public function index()
     {
+        $plps = Auth::user()->role === 'admin' ? User::where('role', 'plp')->get() : null;
         $spareparts = Sparepart::all();
-        return view('admin.spareparts.index', compact('spareparts'));
+        return view('admin.spareparts.index', compact('spareparts', 'plps'));
     }
 
     public function create()
@@ -55,18 +57,26 @@ class SparepartController extends Controller
 
     public function submitRequest(Request $request, Sparepart $sparepart)
     {
-        $validated = $request->validate([
+        // Validasi dasar
+        $rules = [
             'quantity' => 'required|integer|min:1',
             'description' => 'nullable|string',
-            'requested_by' => 'nullable|exists:users,id',
-        ]);
+        ];
 
+        // Jika admin, wajib pilih PLP
+        if (Auth::user()->role === 'admin') {
+            $rules['requested_by'] = 'required|exists:users,id';
+        }
+
+        $validated = $request->validate($rules);
+
+        // Isi requested_by berdasarkan peran
         $validated['requested_by'] = Auth::user()->role === 'admin'
-            ? ($validated['requested_by'] ?? null)
+            ? $validated['requested_by']
             : Auth::id();
 
-        $validated['sparepart_id'] = $sparepart->id; // Pastikan ini tidak null
-
+        $validated['sparepart_id'] = $sparepart->id;
+        // dd($validated);
         if ($sparepart->pendingRequest) {
             return redirect()->back()->with('error', 'Pengajuan sudah ada dan sedang menunggu persetujuan.');
         }

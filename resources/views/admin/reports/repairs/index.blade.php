@@ -27,23 +27,23 @@
             <input type="date" name="end_date" class="form-control" value="{{ request('end_date') }}">
         </div>
         <div class="col-md-3 d-flex align-items-end gap-2">
-            <button type="submit" class="btn btn-primary">Filter</button>
-            <a href="{{ route('laporan.perbaikan.export', request()->all()) }}" class="btn btn-success">Export Excel</a>
+            <button type="submit" class="btn btn-primary btn-rounded"><i class=" fas fa-search"></i></button>
+            <a href="{{ route('laporan.perbaikan.export', request()->all()) }}" class="btn btn-success btn-rounded"><i class=" fas fa-download"> .xlsx</i></a>
         </div>
     </form>
 
     <div class="card">
         <div class="card-body table-responsive">
-            <table class="table table-bordered table-striped">
-                <thead class="table-light">
-                    <tr>
-                        <th>#</th>
-                        <th>Kode Mesin</th>
-                        <th>Nama Mesin</th>
-                        <th>Tanggal Mulai</th>
-                        <th>Tanggal Selesai</th>
-                        <th>PLP</th>
-                    </tr>
+            <table id="multi_col_order" class="table table-bordered >
+                <thead class=" table-light">
+                <tr>
+                    <th>#</th>
+                    <th>Kode Mesin</th>
+                    <th>Nama Mesin</th>
+                    <th>Tanggal Mulai</th>
+                    <th>Tanggal Selesai</th>
+                    <th>PLP</th>
+                </tr>
                 </thead>
                 <tbody>
                     @forelse($results as $i => $log)

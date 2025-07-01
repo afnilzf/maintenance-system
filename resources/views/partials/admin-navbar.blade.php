@@ -10,7 +10,7 @@
             <div class="navbar-brand">
                 <!-- Logo icon -->
                 <a href="index.html">
-                    <img src="{{ asset('admin-assets/assets/images/freedashDark.svg') }}" alt="" class="img-fluid">
+                    <img src="{{ asset('theme/images/schema.png') }}" alt="" class="img-fluid">
                 </a>
             </div>
             <!-- ============================================================== -->
@@ -44,56 +44,17 @@
                         <ul class="list-style-none">
                             <li>
                                 <div class="message-center notifications position-relative">
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)"
-                                        class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                        <div class="btn btn-danger rounded-circle btn-circle"><i
-                                                data-feather="airplay" class="text-white"></i></div>
-                                        <div class="w-75 d-inline-block v-middle ps-2">
-                                            <h6 class="message-title mb-0 mt-1">Luanch Admin</h6>
-                                            <span class="font-12 text-nowrap d-block text-muted">Just see
-                                                the my new
-                                                admin!</span>
-                                            <span class="font-12 text-nowrap d-block text-muted">9:30 AM</span>
-                                        </div>
-                                    </a>
+
                                     <!-- Message -->
                                     <a href="javascript:void(0)"
                                         class="message-item d-flex align-items-center border-bottom px-3 py-2">
                                         <span class="btn btn-success text-white rounded-circle btn-circle"><i
                                                 data-feather="calendar" class="text-white"></i></span>
                                         <div class="w-75 d-inline-block v-middle ps-2">
-                                            <h6 class="message-title mb-0 mt-1">Event today</h6>
+                                            <h6 class="message-title mb-0 mt-1">Jadwal Perawatan Mesin BU.02</h6>
                                             <span
-                                                class="font-12 text-nowrap d-block text-muted text-truncate">Just
-                                                a reminder that you have event</span>
+                                                class="font-12 text-nowrap d-block text-muted text-truncate">Silahkan lakukan perawatan</span>
                                             <span class="font-12 text-nowrap d-block text-muted">9:10 AM</span>
-                                        </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)"
-                                        class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                        <span class="btn btn-info rounded-circle btn-circle"><i
-                                                data-feather="settings" class="text-white"></i></span>
-                                        <div class="w-75 d-inline-block v-middle ps-2">
-                                            <h6 class="message-title mb-0 mt-1">Settings</h6>
-                                            <span
-                                                class="font-12 text-nowrap d-block text-muted text-truncate">You
-                                                can customize this template
-                                                as you want</span>
-                                            <span class="font-12 text-nowrap d-block text-muted">9:08 AM</span>
-                                        </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)"
-                                        class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                        <span class="btn btn-primary rounded-circle btn-circle"><i
-                                                data-feather="box" class="text-white"></i></span>
-                                        <div class="w-75 d-inline-block v-middle ps-2">
-                                            <h6 class="message-title mb-0 mt-1">Pavan kumar</h6> <span
-                                                class="font-12 text-nowrap d-block text-muted">Just
-                                                see the my admin!</span>
-                                            <span class="font-12 text-nowrap d-block text-muted">9:02 AM</span>
                                         </div>
                                     </a>
                                 </div>
@@ -127,20 +88,7 @@
                                 class="svg-icon"></i></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-right user-dd animated flipInY">
-                        <a class="dropdown-item" href="javascript:void(0)"><i data-feather="user"
-                                class="svg-icon me-2 ms-1"></i>
-                            My Profile</a>
-                        <a class="dropdown-item" href="javascript:void(0)"><i data-feather="credit-card"
-                                class="svg-icon me-2 ms-1"></i>
-                            My Balance</a>
-                        <a class="dropdown-item" href="javascript:void(0)"><i data-feather="mail"
-                                class="svg-icon me-2 ms-1"></i>
-                            Inbox</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)"><i data-feather="settings"
-                                class="svg-icon me-2 ms-1"></i>
-                            Account Setting</a>
-                        <div class="dropdown-divider"></div>
+
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a class="dropdown-item" :href="route('logout')"
@@ -149,9 +97,6 @@
                                     class="svg-icon me-2 ms-1"></i>
                                 Logout</a>
                         </form>
-                        <div class="dropdown-divider"></div>
-                        <div class="pl-4 p-3"><a href="javascript:void(0)" class="btn btn-sm btn-info">View
-                                Profile</a></div>
                     </div>
                 </li>
                 <!-- ============================================================== -->

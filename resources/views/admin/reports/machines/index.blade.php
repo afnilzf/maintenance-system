@@ -6,12 +6,12 @@
 <div class="container-fluid">
     <div class="d-flex justify-content-between mb-3">
         <h4>Laporan Data Mesin</h4>
-        <a href="{{ route('laporan.mesin.export') }}" class="btn btn-success">Download Excel</a>
+        <a href="{{ route('laporan.mesin.export') }}" class="btn btn-success btn-rounded"><i class=" fas fa-download"> .xlsx</i></a>
     </div>
 
     <div class="card">
         <div class="card-body table-responsive">
-            <table class="table table-bordered">
+            <table id="multi_col_order" class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Kode</th>

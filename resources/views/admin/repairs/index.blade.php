@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-3">
         @if(Auth::user()->role !== 'kepala_jurusan')
-        <a href="{{ route('repairs.create') }}" class="btn btn-sm btn-primary">
+        <a href="{{ route('repairs.create') }}" class="btn btn-rounded btn-primary">
             <i class="fas fa-plus"></i> Buat Perbaikan
         </a>
         @endif
@@ -25,7 +25,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($repairs as $index => $repair)
+                        @foreach ($repairs as $index => $repair)
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $repair->machine->code ?? '-' }}</td>
@@ -34,14 +34,10 @@
                             <td>{{ $repair->repair_date_start }}</td>
                             <td>{{ $repair->repair_date_finish }}</td>
                             <td>
-                                <a href="{{ route('repairs.show', $repair->id) }}" class="btn btn-sm btn-info">Lihat</a>
+                                <a href="{{ route('repairs.show', $repair->id) }}" class="btn btn-sm btn-info btn-rounded"><i class="fas fa-eye"></i></a>
                             </td>
                         </tr>
-                        @empty
-                        <tr>
-                            <td colspan="8" class="text-center text-muted">Tidak ada data yang ditampilkan.</td>
-                        </tr>
-                        @endforelse
+                        @endforeach
                     </tbody>
                 </table>
             </div>

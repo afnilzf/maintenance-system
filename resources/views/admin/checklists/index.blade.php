@@ -49,17 +49,17 @@
                     <td>
                         @if($req->checklist && $req->checklist->lines->count() > 0)
 
-                        <span class="badge bg-success">Selesai</span>
+                        <span class="badge rounded-pill bg-success">Selesai</span>
                         @else
-                        <span class="badge bg-warning">Waiting</span>
+                        <span class="badge rounded-pill bg-warning">Waiting</span>
                         @endif
                     </td>
                     <td>
                         @if($req->checklist && $req->checklist->lines->count() > 0)
-                        <a href="{{ route('checklists.show', $req->checklist->id) }}" class="btn btn-sm btn-info">Lihat</a>
+                        <a href="{{ route('checklists.show', $req->checklist->id) }}" class="btn btn-sm btn-info btn-rounded"><i class=" fas fa-eye"></i></a>
                         @else
                         @if(Auth::user()->role !== 'kepala_jurusan')
-                        <a href="{{ route('checklists.create', $req->id) }}" class="btn btn-sm btn-primary">Lanjutkan</a>
+                        <a href="{{ route('checklists.create', $req->id) }}" class="btn btn-sm btn-primary btn-rounded"><i class="fas fa-arrow-alt-circle-right"></i></a>
                         @else
                         -
                         @endif

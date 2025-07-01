@@ -84,6 +84,17 @@
                         <label class="form-label">Pengaju</label>
                         <input type="text" class="form-control" value="{{ Auth::user()->name }}" disabled>
                     </div>
+                    @elseif(Auth::user()->role === 'admin')
+                    <div class="mb-3">
+                        <label class="form-label">Pilih PLP</label>
+                        <select name="requested_by" class="form-control" required>
+                            <option value="">-- Pilih PLP --</option>
+                            @foreach($plps as $plp)
+                            <option value="{{ $plp->id }}">{{ $plp->name }} ({{ $plp->sektor }})</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     @endif
                     <div class="mb-3">
                         <label class="form-label">Keterangan</label>

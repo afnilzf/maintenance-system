@@ -12,10 +12,11 @@ use App\Http\Controllers\RepairLogController;
 use App\Http\Controllers\SparepartReplacementController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CalendarScheduleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.loginNew');
 });
 
 Route::get('/dashboard', function () {
@@ -141,6 +142,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/laporan/penggantian', [ReportController::class, 'replacementReport'])->name('laporan.penggantian');
     Route::get('/laporan/penggantian/export', [ReportController::class, 'exportReplacementReport'])->name('laporan.penggantian.export');
+
+    // Route::get('/calendar/events', [CalendarScheduleController::class, 'calendar.events']);
+    Route::get('/calendar', [CalendarScheduleController::class, 'index'])->name('calendar.index');
+    Route::get('/calendar/events', [CalendarScheduleController::class, 'getEvents'])->name('calendar.events');
+
 
     // Manajemen User (opsional)
     // Route::view('/admin/users', 'admin.users')->name('user.index');

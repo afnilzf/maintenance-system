@@ -35,7 +35,7 @@
                             <input type="text" id="input-criteria" class="form-control" placeholder="Kriteria Pengukuran">
                         </div>
                         <div class="col-md-2">
-                            <button type="button" id="add-row" class="btn btn-primary">Tambah Baris</button>
+                            <button type="button" id="add-row" class="btn btn-primary btn-rounded"><i class=" fas fa-arrow-circle-down"> Tambah</i></button>
                         </div>
                     </div>
 
@@ -99,7 +99,7 @@
                     <input type="hidden" name="components[][measurement_criteria]" value="${criteria}">
                 </td>
                 <td>
-                    <button type="button" class="btn btn-danger btn-sm remove-row">Hapus</button>
+                    <button type="button" class="btn btn-danger btn-sm remove-row"><i class="fas fa-trash-alt"></i></button>
                 </td>
             </tr>`;
 

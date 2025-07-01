@@ -5,8 +5,8 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h4>Pengajuan Perawatan</h4>
-    @if(Auth::user()->role === 'plp')
-    <a href="{{ route('maintenance-requests.create') }}" class="btn btn-primary">+ Buat Pengajuan</a>
+    @if(Auth::user()->role !== 'kepala_jurusan')
+    <a href="{{ route('maintenance-requests.create') }}" class="btn btn-primary btn-rounded">+ Buat Pengajuan</a>
     @endif
 </div>
 
@@ -32,35 +32,35 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($schedules as $idx => $schedule)
+                @foreach($schedules as $idx => $schedule)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $schedule->machine->code }} - {{ $schedule->machine->name }}</td>
                     <td>{{ $schedule->period_week }}</td>
                     <td>{{ \Carbon\Carbon::parse($schedule->period)->translatedFormat('F Y') }}</td>
                     <td>{{ $schedule->creator->name }}</td>
-                    <td>
+                    <td class="text-center">
                         @if($schedule->approval_status === 'approved')
-                        <span class="badge bg-success">Disetujui</span>
+                        <span class="badge rounded-pill bg-success">Disetujui</span>
                         @elseif($schedule->approval_status === 'rejected')
-                        <span class="badge bg-danger">Ditolak</span>
+                        <span class="badge rounded-pill bg-danger">Ditolak</span>
                         @else
-                        <span class="badge bg-warning">Menunggu</span>
+                        <span class="badge rounded-pill bg-warning">Menunggu</span>
                         @endif
                     </td>
-                    <td>
+                    <td class="text-center">
                         @if($schedule->approval_status === 'pending' && in_array(Auth::user()->role, ['admin', 'kepala_jurusan']))
                         <form action="{{ route('maintenance-requests.approve', $schedule->id) }}" method="POST" style="display:inline">
                             @csrf
-                            <button class="btn btn-success btn-sm">Setujui</button>
+                            <button class="btn btn-success btn-rounded btn-sm"><i class=" fas fa-check-circle"></i></button>
                         </form>
                         <form action="{{ route('maintenance-requests.reject', $schedule->id) }}" method="POST" style="display:inline">
                             @csrf
-                            <button class="btn btn-danger btn-sm">Tolak</button>
+                            <button class="btn btn-danger btn-rounded btn-sm"><i class=" fas fa-times-circle"></i></button>
                         </form>
                         @endif
 
-                        <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal{{ $schedule->id }}">Detail</button>
+                        <button class="btn btn-info btn-rounded btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal{{ $schedule->id }}"><i class="fas fa-info-circle"></i></button>
 
                         <!-- Modal -->
                         <div class="modal fade" id="detailModal{{ $schedule->id }}" tabindex="-1" aria-labelledby="detailModalLabel{{ $schedule->id }}" aria-hidden="true">
@@ -127,11 +127,8 @@
 
                     </td>
                 </tr>
-                @empty
-                <tr>
-                    <td colspan="7" class="text-center">Belum ada pengajuan.</td>
-                </tr>
-                @endforelse
+
+                @endforeach
             </tbody>
         </table>
     </div>

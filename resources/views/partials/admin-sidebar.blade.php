@@ -52,7 +52,7 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="#" aria-expanded="false">
+                        href="{{ route('calendar.index') }}" aria-expanded="false">
                         <i class="fas fa-calendar-check"></i>
                         <span class="hide-menu">Jadwal Perawatan</span>
                     </a>

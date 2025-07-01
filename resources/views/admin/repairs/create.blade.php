@@ -78,7 +78,7 @@
                         </thead>
                         <tbody></tbody>
                     </table>
-                    <button type="button" class="btn btn-sm btn-secondary" id="add-row">Tambah Baris</button>
+                    <button type="button" class="btn btn-sm btn-rounded btn-success" id="add-row"><i class=" fas fa-plus-circle"> Perbaikan</i></button>
                 </div>
 
                 <div class="text-end">
@@ -115,7 +115,7 @@
             <td><input type="text" name="lines[${rowIdx}][issue]" class="form-control"></td>
             <td><input type="text" name="lines[${rowIdx}][cause]" class="form-control"></td>
             <td><input type="text" name="lines[${rowIdx}][solution]" class="form-control"></td>
-            <td><button type="button" class="btn btn-sm btn-danger" onclick="this.closest('tr').remove()">Hapus</button></td>
+            <td><button type="button" class="btn btn-sm btn-danger" onclick="this.closest('tr').remove()"><i class="fas fa-trash-alt"></i></button></td>
         `;
         tbody.appendChild(row);
         rowIdx++;

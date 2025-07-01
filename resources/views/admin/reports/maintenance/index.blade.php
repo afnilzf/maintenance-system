@@ -33,15 +33,15 @@
         </div>
 
         <div class="col-md-3 d-flex align-items-end gap-2">
-            <button type="submit" class="btn btn-primary">Filter</button>
-            <a href="{{ route('laporan.perawatan.export', request()->all()) }}" class="btn btn-success">Export Excel</a>
+            <button type="submit" class="btn btn-primary btn-rounded"><i class=" fas fa-search"></i></button>
+            <a href="{{ route('laporan.perawatan.export', request()->all()) }}" class="btn btn-success btn-rounded"><i class=" fas fa-download"> .xlsx</i></a>
         </div>
     </form>
 
     <!-- Table -->
     <div class="card">
         <div class="card-body table-responsive">
-            <table class="table table-bordered table-striped">
+            <table id="multi_col_order" class="table table-bordered table-striped">
                 <thead class="table-light">
                     <tr>
                         <th>#</th>
@@ -60,7 +60,7 @@
                         <td>{{ $item->machine->code ?? '-' }}</td>
                         <td>{{ $item->machine->name ?? '-' }}</td>
                         <td>{{ \Carbon\Carbon::createFromDate($item->period_year, $item->period_month)->translatedFormat('F Y') }}</td>
-                        <td><span class="badge bg-info">{{ ucfirst($item->approval_status) }}</span></td>
+                        <td><span class="badge rounded-pill bg-info">{{ ucfirst($item->approval_status) }}</span></td>
                         <td>{{ $item->created_at->format('d-m-Y') }}</td>
                         <td>{{ $item->description }}</td>
                     </tr>

@@ -25,12 +25,13 @@
             <input type="date" name="end_date" class="form-control" value="{{ request('end_date') }}">
         </div>
         <div class="col-md-3 align-self-end">
-            <button type="submit" class="btn btn-primary">Filter</button>
+            <button type="submit" class="btn btn-primary btn-rounded"><i class=" fas fa-search"></i>
+            </button>
             <a href="{{ route('laporan.penggantian') }}" class="btn btn-secondary">Reset</a>
         </div>
         <div class="col-md-2 align-self-end text-end">
-            <a href="{{ route('laporan.penggantian.export', request()->query()) }}" class="btn btn-success">
-                <i class="fas fa-file-excel"></i> Export Excel
+            <a href="{{ route('laporan.penggantian.export', request()->query()) }}" class="btn btn-success btn-rounded">
+                <i class=" fas fa-download"> .xlsx</i>
             </a>
         </div>
     </form>

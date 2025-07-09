@@ -33,41 +33,35 @@
             <!-- ============================================================== -->
             <ul class="navbar-nav float-left me-auto ms-3 ps-1">
                 <!-- Notification -->
+                <!-- Contoh di navbar -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle pl-md-3 position-relative" href="javascript:void(0)"
-                        id="bell" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <span><i data-feather="bell" class="svg-icon"></i></span>
-                        <span class="badge text-bg-primary notify-no rounded-circle">5</span>
+                    <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-bell"></i>
+                        @if (Auth::user()->unreadNotifications->count() > 0)
+                        <span class="badge bg-danger">{{ Auth::user()->unreadNotifications->count() }}</span>
+                        @endif
                     </a>
-                    <div class="dropdown-menu dropdown-menu-left mailbox animated bounceInDown">
-                        <ul class="list-style-none">
-                            <li>
-                                <div class="message-center notifications position-relative">
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notifDropdown">
+                        @forelse(Auth::user()->unreadNotifications->take(5) as $notif)
+                        <li>
+                            <a class="dropdown-item" href="{{ route('notifications.read', $notif->id) }}">
+                                📅 {{ $notif->data['machine']}} {{ $notif->data['description']}}
+                                <br><small class="text-muted">{{ $notif->created_at->diffForHumans() }}</small>
+                            </a>
+                        </li>
 
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)"
-                                        class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                        <span class="btn btn-success text-white rounded-circle btn-circle"><i
-                                                data-feather="calendar" class="text-white"></i></span>
-                                        <div class="w-75 d-inline-block v-middle ps-2">
-                                            <h6 class="message-title mb-0 mt-1">Jadwal Perawatan Mesin BU.02</h6>
-                                            <span
-                                                class="font-12 text-nowrap d-block text-muted text-truncate">Silahkan lakukan perawatan</span>
-                                            <span class="font-12 text-nowrap d-block text-muted">9:10 AM</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <a class="nav-link pt-3 text-center text-dark" href="javascript:void(0);">
-                                    <strong>Check all notifications</strong>
-                                    <i class="fa fa-angle-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+
+                        @empty
+                        <li><span class="dropdown-item text-muted">Tidak ada notifikasi</span></li>
+                        @endforelse
+                        <li><a class="dropdown-item text-end text-primary" href="{{ route('notifications.read.all') }}">Tandai semua sudah dibaca</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item text-center text-primary" href="{{ route('notifications.all') }}">Lihat Semua</a></li>
+                    </ul>
                 </li>
+
                 <!-- End Notification -->
                 <!-- ============================================================== -->
 

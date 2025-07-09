@@ -156,6 +156,23 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::put('/users/{user}/reset-password', [UserController::class, 'resetPassword'])->name('users.reset-password');
+
+
+    Route::get('/notifications/mark-as-read/{id}', function ($id) {
+        $notif = auth()->user()->notifications()->findOrFail($id);
+        $notif->markAsRead();
+        return back();
+    })->name('notifications.read');
+
+    Route::get('/notifications/mark-all-as-read', function () {
+        auth()->user()->unreadNotifications->markAsRead();
+        return back();
+    })->name('notifications.read.all');
+
+    Route::get('/notifications', function () {
+        $notifications = auth()->user()->notifications()->paginate(10); // paginate 10
+        return view('admin.notifications.index', compact('notifications'));
+    })->name('notifications.all');
 });
 
 require __DIR__ . '/auth.php';

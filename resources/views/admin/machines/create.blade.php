@@ -66,6 +66,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Nama lab</label>
+                                    <input type="text" name="lab" class="form-control" placeholder="Nama Lab" required>
+                                </div>
+                            </div>
+                        </div>
                         <hr class="mb-3">
                         <div class="row">
 

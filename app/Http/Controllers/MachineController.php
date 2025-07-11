@@ -96,6 +96,7 @@ class MachineController extends Controller
     {
         return [
             'name' => 'required|string|max:255',
+            'lab' => 'required|string|max:255',
             'code' => 'required|string|unique:machines,code,' . $id,
             'type' => 'nullable|string',
             'inventory_number' => 'nullable|string',

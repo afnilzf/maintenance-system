@@ -25,6 +25,7 @@ class Machine extends Model
         'supplier',
         'repair_complexity',
         'image',
+        'lab',
         'created_by'
     ];
 

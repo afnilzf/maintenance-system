@@ -41,6 +41,7 @@
                             <td><a href="#" data-bs-toggle="modal"
                                     data-bs-target="#specModal{{ $machine->id }}">{{ $machine->code }}</a></td>
                             <td>{{ $machine->name }}</td>
+                            <td>{{ $machine->lab }}</td>
                             <td>{{ $machine->type }}</td>
                             <td>{{ $machine->repair_complexity }}</td>
 

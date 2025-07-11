@@ -52,8 +52,8 @@
                                 <span class="badge rounded-pill text-bg-warning">Sedang</span>
                                 @elseif($machine->condition === 'repaired')
                                 <span class="badge rounded-pill text-bg-warning">Diperbaiki</span>
-                                @elseif($machine->condition === 'demaged')
-                                <span class="badge rounded-pill text-bg-warning">Rusaj</span>
+                                @elseif($machine->condition === 'damaged')
+                                <span class="badge rounded-pill text-bg-warning">Rusak</span>
                                 @else
                                 <span class="badge rounded-pill text-bg-secondary">{{ $machine->condition }}</span>
                                 @endif

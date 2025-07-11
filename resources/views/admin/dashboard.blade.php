@@ -35,7 +35,7 @@
                     <div class="d-flex align-items-center">
                         <div>
                             <div class="d-inline-flex align-items-center">
-                                <h2 class="text-dark mb-1 font-weight-medium">236</h2>
+                                <h2 class="text-dark mb-1 font-weight-medium">{{ $totalMesin }}</h2>
                                 <!-- <span
                                                 class="badge bg-primary font-12 text-white font-weight-medium rounded-pill ms-2 d-lg-block d-md-none"></span> -->
                             </div>
@@ -55,7 +55,7 @@
                     <div class="d-flex align-items-center">
                         <div>
                             <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><sup
-                                    class="set-doller">222
+                                    class="set-doller">{{ $totalPerawatan }}
                                     <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">
                                         Jumlah Perawatan
                                     </h6>
@@ -73,7 +73,7 @@
                     <div class="d-flex align-items-center">
                         <div>
                             <div class="d-inline-flex align-items-center">
-                                <h2 class="text-dark mb-1 font-weight-medium">333</h2>
+                                <h2 class="text-dark mb-1 font-weight-medium">{{ $totalPemeriksaan }}</h2>
                                 <!-- <span
                                                 class="badge bg-danger font-12 text-white font-weight-medium rounded-pill ms-2 d-md-none d-lg-block">-18.33%</span> -->
                             </div>
@@ -93,7 +93,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <h2 class="text-dark mb-1 font-weight-medium">864</h2>
+                            <h2 class="text-dark mb-1 font-weight-medium">{{ $totalPerbaikan }}</h2>
                             <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Jumlah
                                 Perbaikan</h6>
                         </div>

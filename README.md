@@ -1,61 +1,135 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistem Manajemen Perawatan Mesin - Schema Maintenance
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistem ini merupakan aplikasi berbasis web yang dibangun menggunakan **Laravel** untuk membantu manajemen perawatan mesin, seperti pengelolaan data mesin, pemeriksaan berkala, perbaikan, penggantian suku cadang, hingga notifikasi otomatis.
 
-## About Laravel
+---
+## 📁 Struktur Folder
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+| Folder / File                | Penjelasan |
+|-----------------------------|------------|
+| `.env`                      | File konfigurasi aplikasi |
+| `routes/web.php`            | Routing utama web |
+| `database/migrations/`      | Struktur database |
+| `database/seeders/`         | Untuk generate dummy data |
+| `app/Models/`               | Model Eloquent ORM |
+| `app/Http/Controllers/`     | Controller aplikasi |
+| `resources/views/`          | Blade templates (View) |
+| `resources/views/layouts/`  | Layout blade seperti `admin.blade.php` |
+| `resources/views/partials/` | Navbar, sidebar, content wrapper |
+| `public/admin-assets/`      | Asset Admin Template |
+| `public/storage/`           | Lokasi file penyimpanan mesin, bukti dll |
+| `vendor/`                   | Folder otomatis composer untuk library |
+| `php artisan notify:maintenance-today` | Menjalankan notifikasi manual |
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
+## 🔐 Fitur Autentikasi
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Menggunakan Laravel Breeze:
 
-## Learning Laravel
+- Login, Register, Verifikasi Email, Reset Password
+- Tersedia layout dasar dengan Blade
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 📦 Library Pihak Ketiga
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- `maatwebsite/excel` : Export data ke Excel
+- `barryvdh/laravel-dompdf` : Export PDF
+- `laravel/breeze` : Autentikasi sederhana
+- `fullcalendar.js` : Kalender interaktif
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🔄 Notifikasi Otomatis
 
-## Laravel Sponsors
+- Menggunakan Laravel Task Scheduler
+- Command: `php artisan notify:maintenance-today`
+- Mengirim notifikasi email dan sistem jika ada jadwal perawatan hari ini
+- Scheduler dapat di-setup otomatis di Task Scheduler (Windows) atau cron (Linux)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 📌 Notifikasi UI
 
-### Premium Partners
+- Menampilkan 5 notifikasi terbaru
+- Tersedia tombol "Lihat Semua"
+- Menandai sebagai dibaca (mark as read) melalui tombol
+- Tersinkronisasi antar akun (misal: PLP dibaca, maka Kepala Jurusan pun ditandai dibaca)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 🧠 Logika Kondisi Mesin
 
-## Contributing
+```text
+- B = Baik
+- O = Sedang
+- Rs = Rusak (Sudah Diperbaiki)
+- Rb = Rusak (Belum Diperbaiki)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Status Mesin:
+- Jika B paling banyak → Baik
+- Jika ada Rb → Rusak
+- Jika O terbanyak → Sedang
+- Jika Rs terbanyak → Rusak (Sudah Diperbaiki)
+```
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🧠 Penjelasan Query dan Model (Laravel 12)
 
-## Security Vulnerabilities
+Pada Laravel 12, model semakin powerful karena:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Menggunakan **Eloquent ORM** sebagai dasar pengambilan dan relasi data
+- Fitur seperti **with()**, **whereHas()**, **hasMany()**, **belongsTo()**, **pluck()**, **firstWhere()** membuat Eloquent bisa menggantikan raw query & query builder secara efisien
+- Relasi antar model digunakan untuk join antar tabel
+- Pencarian data menggunakan kombinasi filter langsung di query chain (`Model::where(...)->where(...)->get()`)
 
-## License
+Contoh:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```php
+// Ambil mesin yang belum diperbaiki
+$availableMachines = Machine::whereIn('id', $machines)
+    ->whereNotIn('id', $repairedMachineIds)
+    ->get();
+```
+---
+
+## 📊 Daftar Menu dan File MVC Terkait
+
+| Menu                    | View Blade                                  | Controller                   | Model              |
+| ----------------------- | ------------------------------------------- | ---------------------------- | ------------------ |
+| Dashboard               | admin/dashboard.blade.php                   | DashboardController          | -                  |
+| Daftar Mesin            | admin/machines/index.blade.php              | MachineController            | Machine            |
+| Tambah Mesin            | admin/machines/create.blade.php             | MachineController            | Machine            |
+| Jadwal Perawatan        | admin/maintenance\_requests/index.blade.php | MaintenanceRequestController | MaintenanceRequest |
+| Pemeriksaan Mesin       | admin/checklists/index.blade.php            | MachineChecklistController   | MachineChecklist   |
+| Perbaikan Mesin         | admin/repairs/index.blade.php               | RepairLogController          | RepairLog          |
+| Pergantian Suku Cadang  | admin/replacements/index.blade.php          | ReplacementPartController    | ReplacementPart    |
+| Pengajuan Suku Cadang   | admin/spareparts/request.blade.php          | SparepartController          | SparepartRequest   |
+| Riwayat Suku Cadang     | admin/spareparts/history.blade.php          | SparepartController          | SparepartHistory   |
+| Laporan Data Mesin      | admin/reports/machines/index.blade.php      | ReportController             | Machine            |
+| Laporan Perawatan Mesin | admin/reports/maintenance/index.blade.php   | ReportController             | MaintenanceRequest |
+| Laporan Perbaikan Mesin | admin/reports/repairs/index.blade.php       | ReportController             | RepairLog          |
+| Laporan Suku Cadang     | admin/reports/replacements/index.blade.php  | ReportController             | ReplacementPart    |
+| Manajemen User          | admin/users/index.blade.php                 | UserManagementController     | User               |
+
+## 🚀 Cara Menjalankan Notifikasi Otomatis
+
+1. Tambahkan ini di `routes/console.php`
+
+```php
+Artisan::command('notify:maintenance-today', function () {
+    Artisan::call('app:notify-maintenance');
+});
+```
+
+2. Daftarkan `App\Console\Kernel.php`
+
+```php
+protected function schedule(Schedule $schedule)
+{
+    $schedule->command('notify:maintenance-today')->daily();
+}
+```
+
+3. Untuk Windows: buat task di Task Scheduler menjalankan:
+
+```bash
+php artisan schedule:run
+```
+
+---
+
+

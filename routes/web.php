@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MachineController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\PreventiveScheduleController;
@@ -27,9 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     //Machines
     Route::get('/machines', [MachineController::class, 'index'])->name('machines.index');

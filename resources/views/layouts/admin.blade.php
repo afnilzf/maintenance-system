@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" sizes="16x16" href="{{ asset('theme/images/iconpolman.ico') }}">
     <title>@yield('title', 'Admin Panel')</title>
     <link rel="stylesheet" href="{{ asset('admin-assets/assets/extra-libs/c3/c3.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/assets/libs/chartist/dist/chartist.min.css') }}">

@@ -34,16 +34,16 @@
 
     <div class="card">
         <div class="card-body table-responsive">
-            <table id="multi_col_order" class="table table-bordered >
+            <table id="multi_col_order" class="table table-bordered">
                 <thead class=" table-light">
-                <tr>
-                    <th>#</th>
-                    <th>Kode Mesin</th>
-                    <th>Nama Mesin</th>
-                    <th>Tanggal Mulai</th>
-                    <th>Tanggal Selesai</th>
-                    <th>PLP</th>
-                </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Kode Mesin</th>
+                        <th>Nama Mesin</th>
+                        <th>Tanggal Mulai</th>
+                        <th>Tanggal Selesai</th>
+                        <th>PLP</th>
+                    </tr>
                 </thead>
                 <tbody>
                     @forelse($results as $i => $log)

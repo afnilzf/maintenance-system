@@ -37,7 +37,7 @@
                     <td>{{ $request->created_at->format('d-m-Y') }}</td>
                     <td>
                         @if($request->status === 'pending')
-                        <span class="badge rounded-pill bg-warning">Pending</span>
+                        <span class="badge rounded-pill bg-warning">Menunggu</span>
                         @elseif($request->status === 'approved')
                         <span class="badge rounded-pill  bg-success">Disetujui</span>
                         @else

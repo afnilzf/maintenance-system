@@ -38,7 +38,7 @@
 
     <div class="card">
         <div class="card-body table-responsive">
-            <table class="table table-bordered">
+            <table id="multi_col_order" class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Tanggal</th>

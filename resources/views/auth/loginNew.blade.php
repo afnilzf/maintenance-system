@@ -9,7 +9,7 @@
     <meta name="author" content="">
 
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('theme/images/polman.png') }}">
-    <title>HRIS</title>
+    <title>Maintenance System</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('admin-assets/dist/css/style.min.css') }}">

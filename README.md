@@ -93,10 +93,12 @@ $availableMachines = Machine::whereIn('id', $machines)
 | Dashboard               | admin/dashboard.blade.php                   | DashboardController          | -                  |
 | Daftar Mesin            | admin/machines/index.blade.php              | MachineController            | Machine            |
 | Tambah Mesin            | admin/machines/create.blade.php             | MachineController            | Machine            |
-| Jadwal Perawatan        | admin/maintenance\_requests/index.blade.php | MaintenanceRequestController | MaintenanceRequest |
+| Tambah Komponen            | admin/components/create.blade.php             | ComponentController            | Component            |
+| Jadwal Perawatan        | admin/calendar/index.blade.php | CalendarScheduleController | CalendarSchedule |
+| Pengajuan Perawatan        | admin/maintenance\_requests/index.blade.php | MaintenanceRequestController | MaintenanceRequest |
 | Pemeriksaan Mesin       | admin/checklists/index.blade.php            | MachineChecklistController   | MachineChecklist   |
 | Perbaikan Mesin         | admin/repairs/index.blade.php               | RepairLogController          | RepairLog          |
-| Pergantian Suku Cadang  | admin/replacements/index.blade.php          | ReplacementPartController    | ReplacementPart    |
+| Pergantian Suku Cadang  | admin/replacements/index.blade.php          | SparepartReplacementController    | SparepartReplacement    |
 | Pengajuan Suku Cadang   | admin/spareparts/request.blade.php          | SparepartController          | SparepartRequest   |
 | Riwayat Suku Cadang     | admin/spareparts/history.blade.php          | SparepartController          | SparepartHistory   |
 | Laporan Data Mesin      | admin/reports/machines/index.blade.php      | ReportController             | Machine            |
